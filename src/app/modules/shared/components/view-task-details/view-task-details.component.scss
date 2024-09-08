@@ -1,0 +1,75 @@
+.task-list {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 37vh;
+    padding-top: 20px;
+    padding-bottom: 15px;
+
+
+    .task-card {
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        max-width: 40%;
+        min-width: 40%;
+        margin-left: 27%;
+
+        .task-details {
+            padding: 20px;
+
+            .task-name {
+                font-size: 20px;
+                font-weight: bold;
+                color: #108ee9;
+                margin-bottom: 10px;
+            }
+
+            .task-description {
+                margin-bottom: 10px;
+            }
+
+            .task-info {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+                margin-top: 10px;
+
+                .info-row {
+                    flex: 0 0 50%;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 8px;
+
+                    .info-label {
+                        font-weight: 10px;
+                        margin-right: 5px;
+                    }
+
+                    .info-value {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.comment-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+
+
+    .comment-card {
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        max-width: 13%;
+        min-width: 13%;
+        margin-left: 8px;
+        height: 150px;
+    }
+
+}
+.img {
+    object-fit: cover;
+}

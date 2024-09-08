@@ -1,0 +1,37 @@
+<div class="task-list">
+    <mat-card class="task-card" *ngFor="let task of listOfTasks">
+        <div class="task-details">
+            <h2 class="task-name">{{ task.title }}</h2>
+            <p class="task-description">Task Id: {{ task.id }}</p>
+            <p class="task-description">Description: {{ task.description }}</p>
+            <mat-divider></mat-divider>
+            <div class="task-info">
+                <div class="info-row">
+                    <span class="info-label"> Due Date: </span>
+                    <span class="info-value">{{ task.dueDate | date: 'MMM d, y'}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Priority: </span>
+                    <span class="info-value">{{ task.priority }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status: </span>
+                    <span class="info-value">{{ task.taskStatus }}</span>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="actions">
+                <button mat-icon-button color="accent" class="view-button" routerLink="/taskdetails/{{task.id}}">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" class="update-button" [matMenuTriggerFor]="statusMenu">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <mat-menu #statusMenu="matMenu">
+                    <button mat-menu-item (click)="updateStatus(task.id, 'INPROGRESS')">IN PROGRESS</button>
+                    <button mat-menu-item (click)="updateStatus(task.id, 'COMPLETED')">COMPLETED</button>
+                </mat-menu>
+            </div>
+        </div>
+    </mat-card>
+</div>

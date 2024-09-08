@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 16px;
+}
+
+span {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.spacer {
+    flex: 1;
+}
+
+.custom-toolbar {
+    background-color: red;
+}
+.taskbar-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other content */
+    background-color: white; /* Add background color to avoid content overlap */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+    // padding: 10px; /* Add padding if needed */
+  }

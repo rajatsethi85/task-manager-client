@@ -1,0 +1,58 @@
+<div class="task-list" *ngIf="taskData">
+    <mat-card class="task-card">
+        <div class="task-details">
+            <h2 class="task-name">{{ taskData.title }}</h2>
+            <p class="task-description">Task Id: {{ taskData.id }}</p>
+            <p class="task-description">Description: {{ taskData.description }}</p>
+            <mat-divider></mat-divider>
+            <div class="task-info">
+                <div class="info-row">
+                    <span class="info-label"> Due Date: </span>
+                    <span class="info-value">{{ taskData.dueDate | date: 'MMM d, y'}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label"> Contributor: </span>
+                    <span class="info-value">{{ taskData.contributorName }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Priority: </span>
+                    <span class="info-value">{{ taskData.priority }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status: </span>
+                    <span class="info-value">{{ taskData.taskStatus }}</span>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="comment-list">
+                <mat-card-content>
+                    <h3>Add comment</h3>
+                    <div>
+                        <form [formGroup]="commentForm">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Content</mat-label>
+                                <textarea matInput formControlName="content"></textarea>
+                            </mat-form-field>
+                            <div>
+                                <button mat-raised-button color="primary" style="float: right; float: none; margin-left: 25%;" 
+                                [disabled]="!commentForm.valid" type="submit" (click)="publishComment()">Comment</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </mat-card-content>
+            </div>
+        </div>
+    </mat-card>
+</div>
+
+<div class="comment-list">
+    <mat-card *ngFor="let comment of comments"  class="comment-card">
+        <mat-card-header>
+            <img mat-card-avatar src="/assets/images/comment.jpg" alt="Comment Image">
+            <mat-card-title>{{ comment.postedBy }}</mat-card-title>
+            <mat-card-subtitle>{{ comment.createdAt | date: 'medium' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>{{ comment.content }}</mat-card-content>
+    </mat-card>
+</div>

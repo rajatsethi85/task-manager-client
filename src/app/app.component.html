@@ -1,0 +1,28 @@
+<div class="taskbar-header">
+  <div *ngIf="!isAdminLoggedIn && !isContributorLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">Task Manager</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/signup" routerLinkActive="active">Register</button>
+      <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
+    </mat-toolbar>
+  </div>
+  <div *ngIf="isAdminLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">Task Manager | {{this.currentUser.name}}</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Admin Dashboard</button>
+      <button mat-button routerLink="/admin/task" routerLinkActive="active">Add Task</button>
+      <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
+    </mat-toolbar>
+  </div>
+  <div *ngIf="isContributorLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">Task Manager | Contributor {{this.currentUser.name}}</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/contributor/dashboard" routerLinkActive="active">Contributor Dashboard</button>
+      <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
+    </mat-toolbar>
+  </div>
+</div>
+<router-outlet></router-outlet>
