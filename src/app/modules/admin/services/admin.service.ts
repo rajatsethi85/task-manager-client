@@ -1,4 +1,4 @@
-import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
@@ -28,9 +28,11 @@ export class AdminService {
 * Function to hit get all tasks API.
 * @returns observable
 */
-  getAllTasks(): Observable<any> {
+  getAllTasks(pageNumber: number, pageSize: number): Observable<any> {
+    const params = new HttpParams().set("pageNumber", pageNumber).append("pageSize", pageSize);
     return this.http.get(environment.BASE_URL + "api/admin/tasks", {
-      headers: this.createAuthorizationHeader()
+      headers: this.createAuthorizationHeader(),
+      params: params
     });
   }
 

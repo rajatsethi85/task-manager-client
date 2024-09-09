@@ -17,9 +17,11 @@ export class ContributorService {
   /**
 * Function to getTask for the logged in contributor.
 */
-  getCurrentUserTasks(): Observable<any> {
+  getCurrentUserTasks(pageNumber: number, pageSize: number): Observable<any> {
+    const params = new HttpParams().set("pageNumber", pageNumber).append("pageSize", pageSize);
     return this.http.get(environment.BASE_URL + "api/contributor/tasks", {
-      headers: this.createAuthorizationHeader()
+      headers: this.createAuthorizationHeader(),
+      params: params
     })
   }
 

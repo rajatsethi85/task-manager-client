@@ -21,4 +21,25 @@ mat-card {
     margin-top: 4%;
     margin-bottom: -2%;
     flex: 1 1 calc(33.33% - 20px); /* 3 cards per row */
+    padding: 10px !important;
+}
+
+.mat-paginator-outer-container {
+    background-color: rgb(241, 241, 247);
+    color: black;
+    border-radius: 30px;
+    border: 5px solid #4b4be6;
+    .mat-button-wrapper{
+        color: white;
+    }
+}
+
+.mat-paginator-range-actions {
+    background-color: #5858e6;
+    border-radius: 30px;
+    color: white;
+
+    .mat-paginator-range-label {
+        font-size: larger;
+    }
 }

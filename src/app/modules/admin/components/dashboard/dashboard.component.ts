@@ -4,6 +4,8 @@ import { of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
+import { PageEvent } from '@angular/material/paginator';
+
 
 /**
  * Component for admin dashboard.
@@ -14,7 +16,11 @@ import { StorageService } from 'src/app/auth/services/storage/storage.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
   listOfTasks: any = [];
+  pageSize: number = 6;
+  currentPage: number = 0;
+  totalElements: number = 0;
   constructor(private adminService: AdminService,
     private snackbar: MatSnackBar,
     private router: Router
@@ -28,9 +34,10 @@ export class DashboardComponent implements OnInit {
    * Function to get all tasks for admin dashboard.
    */
   getTasks() {
-    this.adminService.getAllTasks().subscribe({
+    this.adminService.getAllTasks(this.currentPage, this.pageSize).subscribe({
       next: (res) => {
-        this.listOfTasks = res;
+        this.listOfTasks = res.data;
+        this.totalElements = res.totalElements;
       },
       error: (err) => {
         if (err.status == "403") {
@@ -73,4 +80,14 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
+
+/**
+* Function to detect any change in mat paginator.
+* @param $event
+*/
+  onPageChange($event: PageEvent) {
+    this.currentPage = $event.pageIndex;
+    this.pageSize = $event.pageSize;
+    this.getTasks();
+    }
 }

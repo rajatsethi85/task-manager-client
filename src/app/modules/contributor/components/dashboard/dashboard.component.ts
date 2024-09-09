@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ContributorModule } from '../../contributor.module';
 import { ContributorService } from '../../services/contributor.service';
-import { catchError, of, tap } from 'rxjs';
+import { of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
+import { PageEvent } from '@angular/material/paginator';
+
 
 /**
 * Component for contributor dashboard.
@@ -17,6 +18,9 @@ import { StorageService } from 'src/app/auth/services/storage/storage.service';
 export class DashboardComponent implements OnInit {
 
   listOfTasks: any = [];
+  pageSize: number = 6;
+  currentPage: number = 0;
+  totalElements: number = 0;
 
   constructor(private contributorService: ContributorService,
     private snackbar: MatSnackBar,
@@ -32,11 +36,12 @@ export class DashboardComponent implements OnInit {
 * Function to getTask for the logged in contributor.
 */
   getTasks() {
-    this.contributorService.getCurrentUserTasks().
+    this.contributorService.getCurrentUserTasks(this.currentPage, this.pageSize).
       subscribe({
         next: (res) => {
           if (res != null) {
-            this.listOfTasks = res;
+            this.listOfTasks = res.data;
+            this.totalElements = res.totalElements;
           }
         },
         error: (err) => {
@@ -80,6 +85,16 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
+
+/**
+* Function to detect any change in mat paginator.
+* @param $event
+*/
+  onPageChange($event: PageEvent) {
+    this.currentPage = $event.pageIndex;
+    this.pageSize = $event.pageSize;
+    this.getTasks();
+    }
 
 }
 
