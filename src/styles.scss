@@ -33,6 +33,10 @@ mat-card {
         color: white;
     }
 }
+.mat-paginator-container {
+    min-height: 48px !important;
+    font-size: 10px;
+}
 
 .mat-paginator-range-actions {
     background-color: #5858e6;
@@ -42,4 +46,13 @@ mat-card {
     .mat-paginator-range-label {
         font-size: larger;
     }
+}
+
+.pager {
+    display: flex;
+    padding-top: 28px;
+    justify-content:center;
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
 }

@@ -18,7 +18,7 @@
   </div>
   <div *ngIf="isContributorLoggedIn">
     <mat-toolbar color="primary" class="navbar">
-      <span class="navbar-brand">Task Manager | Contributor {{this.currentUser.name}}</span>
+      <span class="navbar-brand">Task Manager | {{this.currentUser.name}}</span>
       <span class="spacer"></span>
       <button mat-button routerLink="/contributor/dashboard" routerLinkActive="active">Contributor Dashboard</button>
       <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>

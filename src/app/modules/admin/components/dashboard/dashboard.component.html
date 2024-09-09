@@ -39,7 +39,7 @@
         </div>
     </mat-card>  
 </div>
-<div class="pager"><mat-paginator [length]="totalElements"
+<div class="pager" *ngIf="totalElements !== 0"><mat-paginator [length]="totalElements"
     [pageSize]="pageSize"
     [pageSizeOptions]="[2, 4, 6]"
     aria-label="Select page"
